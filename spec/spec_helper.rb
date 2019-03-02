@@ -1,14 +1,39 @@
-require "bundler/setup"
-require "activerecord/preload_block"
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+$LOAD_PATH.unshift(File.dirname(__FILE__))
 
-RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
+require 'rspec'
 
-  # Disable RSpec exposing methods globally on `Module` and `main`
-  config.disable_monkey_patching!
+Bundler.require
 
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+require 'active_record'
+
+ActiveRecord::Base.configurations[:test] = {
+  adapter: 'sqlite3',
+  database: ':memory:'
+}
+
+ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations[:test])
+
+class User < ActiveRecord::Base
+  has_many :comments
+  has_many :posts
+
+  def odd_id?
+    id.odd?
+  end
+
+  def even_id?
+    !odd_id?
   end
 end
+
+class Comment < ActiveRecord::Base
+  belongs_to :user
+end
+
+class Post < ActiveRecord::Base
+  belongs_to :user
+end
+
+ActiveRecord::Migration.verbose = false
+ActiveRecord::MigrationContext.new(File.expand_path("../db/migrate", __FILE__)).up

@@ -20,8 +20,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'activerecord', '>= 0'
+  spec.add_dependency 'activerecord-records_on_load', '~> 0.1.4'
+
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'sqlite3', '>= 0'
+  spec.add_development_dependency 'sqlite3', '~> 1.3.6'
 end
