@@ -1,9 +1,5 @@
 # Activerecord::PreloadBlock
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/activerecord/preload_block`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,7 +18,28 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# eq: User.all.preload(:comments, :posts)
+User.all.preload do |records|
+  preload records, :comments
+  preload records, :posts
+end
+
+# filter preload owner
+User.all.preload do |records|
+  preload records.select(&:hoge?), :comments
+end
+
+# filter preload associations records
+User.all.preload do |records|
+  preload records, :comments, Comment.where(hoge: 'foo')
+end
+
+# with arguments
+User.all.preload(:posts) do |records|
+  preload records, :comments
+end
+```
 
 ## Development
 

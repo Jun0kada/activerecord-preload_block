@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['jun.0kada.dev@gmail.com']
 
   spec.summary       = 'ActiveRecord::QueryMethods#preload blockable extenstion'
-  spec.description   = 'ActiveRecord::QueryMethods#preload blockable extenstion'
+  spec.description   = 'You can use for STI, polymorphic and custom preload'
   spec.homepage      = 'https://github.com/Jun0kada/activerecord-preload_block'
   spec.license       = 'MIT'
 
