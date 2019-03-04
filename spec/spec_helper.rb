@@ -35,5 +35,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
 end
 
-ActiveRecord::Migration.verbose = false
-ActiveRecord::MigrationContext.new(File.expand_path("../db/migrate", __FILE__)).up
+if ActiveRecord.version >= Gem::Version.new('5.2.0')
+  ActiveRecord::MigrationContext.new(File.expand_path('../db/migrate', __FILE__)).up
+else
+  ActiveRecord::Migrator.migrate File.expand_path('../db/migrate', __FILE__), nil
+end

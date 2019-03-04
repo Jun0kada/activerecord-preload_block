@@ -1,4 +1,4 @@
-class CreateUsersTable < ActiveRecord::Migration[4.2]
+class CreateUsersTable < (ActiveRecord::VERSION::MAJOR >= 5 ? ActiveRecord::Migration[5.0] : ActiveRecord::Migration)
   def change
     create_table :users do |t|
       t.string :name

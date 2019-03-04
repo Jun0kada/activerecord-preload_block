@@ -1,4 +1,5 @@
 # Activerecord::PreloadBlock
+[![Build Status](https://travis-ci.org/Jun0kada/activerecord-preload_block.svg?branch=master)](https://travis-ci.org/Jun0kada/activerecord-preload_block)
 
 ## Installation
 
