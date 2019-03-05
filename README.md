@@ -42,6 +42,9 @@ User.all.preload(:posts) do |records|
 end
 ```
 
+[gem 'activerecord-records_on_load'](https://github.com/Jun0kada/activerecord-records_on_load)
+is also helpful for customizing AR records loaded hook
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/activerecord-preload_block. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
